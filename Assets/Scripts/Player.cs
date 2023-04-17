@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 	{
 		onCountdownStart.Invoke();
 		selectedCharacter.transform.DOMove(atkRef.position, 6f);
+		StartCoroutine(WaitForSeconds());
 	}
 
 	public bool IsAttacking()
@@ -90,7 +91,6 @@ public class Player : MonoBehaviour
 	
 	public bool IsDamaging()
 	{
-		selectedCharacter.Anim.SetTrigger("Attack");
 		if(selectedCharacter == null)
 			return false;
 		var spriteRend = selectedCharacter.GetComponent<SpriteRenderer>();
@@ -119,5 +119,11 @@ public class Player : MonoBehaviour
 		if(selectedCharacter == null)
 			return false;
 		return DOTween.IsTweening(selectedCharacter.transform);
+	}
+	
+	IEnumerator WaitForSeconds()
+	{
+		yield return new WaitForSeconds(5.5f);
+		selectedCharacter.Anim.SetTrigger("Attack");
 	}
 }
