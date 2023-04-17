@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
 	static AudioSource sfxInstance;
 	[SerializeField] AudioSource bgm;
 	[SerializeField] AudioSource sfx;
+	
+	public bool IsMute { get => bgm.mute;}
+	public float BgmVolume { get => bgm.volume; }
+	public float SfxVolume { get => sfx.volume; }
 
 	private void Awake()
 	{
