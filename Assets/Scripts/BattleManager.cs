@@ -4,32 +4,15 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-	[SerializeField]
-	State state;
+	[SerializeField] State state;
 
-	[SerializeField]
-	Player player1;
+	[SerializeField] Player player1;
 
-	[SerializeField]
-	Player player2;
+	[SerializeField] Player player2;
 
-	[SerializeField]
-	bool isPlayer1DoneSelecting;
+	[SerializeField] bool isReturningDone;
 
-	[SerializeField]
-	bool isPlayer2DoneSelecting;
-
-	[SerializeField]
-	bool isAttackDone;
-
-	[SerializeField]
-	bool isDamagingDone;
-
-	[SerializeField]
-	bool isReturningDone;
-
-	[SerializeField]
-	bool isPlayerEliminated;
+	[SerializeField] bool isPlayerEliminated;
 
 	enum State
 	{
@@ -67,6 +50,7 @@ public class BattleManager : MonoBehaviour
 			case State.Player2Select:
 				if (player2.SelectedCharacter != null)
 				{
+					player2.SetPlay(false);
 					player1.Attack();
 					player2.Attack();
 					state = State.Attacking;
@@ -77,13 +61,32 @@ public class BattleManager : MonoBehaviour
 				if (player1.IsAttacking() == false && player2.IsAttacking() == false)
 				{
 					CalculateBattle(player1, player2, out Player winner, out Player loser);
-
+					if(loser == null)
+					{
+						player1.TakeDamage(player2.SelectedCharacter.AttackPower);
+						player2.TakeDamage(player1.SelectedCharacter.AttackPower);
+					}
+					else
+					{
+						loser.TakeDamage(winner.SelectedCharacter.AttackPower);
+					}
+					
+					if(player1.SelectedCharacter.CurrentHP == 0)
+					{
+						player1.Remove(player1.SelectedCharacter);
+					}
+					
+					if(player2.SelectedCharacter.CurrentHP == 0)
+					{
+						player2.Remove(player1.SelectedCharacter);
+					}
+					
 					state = State.Damaging;
 				}
 				break;
 
 			case State.Damaging:
-				if (isDamagingDone)
+				if (player1.IsDamaging() == false && player2.IsDamaging() == false)
 				{
 					state = State.Returning;
 				}
