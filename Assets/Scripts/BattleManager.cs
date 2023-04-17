@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class BattleManager : MonoBehaviour
 	[SerializeField] GameObject battleResult;
 	
 	[SerializeField] TMP_Text battleResultText;
+
+	[SerializeField] int countdownTime;
+	
+	[SerializeField] TMP_Text countdownDisplay;
 
 	[SerializeField] Player player1;
 
@@ -56,6 +61,7 @@ public class BattleManager : MonoBehaviour
 					player1.Attack();
 					player2.Attack();
 					state = State.Attacking;
+					StartCoroutine(CountdownToStart());
 				}
 				break;
 
@@ -179,5 +185,21 @@ public class BattleManager : MonoBehaviour
 	public void Main()
 	{
 		SceneManager.LoadScene("Main");
+	}
+	
+	IEnumerator CountdownToStart()
+	{
+		countdownDisplay.gameObject.SetActive(true);
+		while(countdownTime>0)
+		{
+			countdownDisplay.text = countdownTime.ToString();
+			
+			yield return new WaitForSeconds(1f);
+			
+			countdownTime--;
+		}
+		
+		countdownDisplay.gameObject.SetActive(false);
+		countdownTime = 6;
 	}
 }

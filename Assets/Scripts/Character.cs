@@ -18,6 +18,8 @@ public class Character : MonoBehaviour
 	[SerializeField] Image healthBar;
 	[SerializeField] TMP_Text hpText;
 	[SerializeField] Button button;
+	[SerializeField] Animator anim;
+	
 	private Vector3 initialPosition;
 
 	public Button Button { get => button; }
@@ -28,9 +30,11 @@ public class Character : MonoBehaviour
 	
 	public int CurrentHP {get => currentHP; }
 	
-	public Vector3 InitialPosition{get => initialPosition; }
+	public Vector3 InitialPosition {get => initialPosition; }
 	
 	public int MaxHP {get => maxHP; }
+	
+	// public Animator Anim { get => anim;}
 
 	private void Start()
 	{

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	[SerializeField] bool isBot;
 	
 	[SerializeField] UnityEvent onTakeDamage;
+	[SerializeField] UnityEvent onCountdownStart;
 
 	public Character SelectedCharacter { get => selectedCharacter; }
 	
@@ -68,7 +69,9 @@ public class Player : MonoBehaviour
 	
 	public void Attack()
 	{
-		selectedCharacter.transform.DOMove(atkRef.position, 0.7f);
+		// SelectedCharacter.Anim.SetTrigger("Attack");
+		onCountdownStart.Invoke();
+		selectedCharacter.transform.DOMove(atkRef.position, 6f);
 	}
 
 	public bool IsAttacking()
