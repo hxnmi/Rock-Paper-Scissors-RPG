@@ -52,7 +52,7 @@ public class BattleManager : MonoBehaviour
 			case State.Player2Select:
 				if (player2.SelectedCharacter != null)
 				{
-					player2.SetPlay(false);
+					player2.SetPlay(true);
 					player1.Attack();
 					player2.Attack();
 					state = State.Attacking;

@@ -9,35 +9,51 @@ public class AudioManager : MonoBehaviour
 	[SerializeField] AudioSource bgm;
 	[SerializeField] AudioSource sfx;
 	
-	public bool IsMute { get => bgm.mute;}
-	public float BgmVolume { get => bgm.volume; }
-	public float SfxVolume { get => sfx.volume; }
+	public bool IsMute
+    {
+        get => bgm.mute;
+        set => bgm.mute = value;
+    }
 
-	private void Awake()
-	{
-		if(bgmInstance != null)
-		{
-			Destroy(bgm.gameObject);
-			bgm = bgmInstance;
-		}
-		
-		if(sfxInstance != null)
-		{
-			Destroy(sfx.gameObject);
-			sfx = sfxInstance;
-		}
-		
-		DontDestroyOnLoad(bgm.gameObject);
-		DontDestroyOnLoad(sfx.gameObject);
-	}
-	public void PlayBGM(AudioClip clip, bool loop = true)
-	{
-		if(bgm.isPlaying)
-			bgm.Stop();
-		bgm.clip = clip;
-		bgm.loop = loop;
-		bgm.Play();
-	}
+    public float BgmVolume { get => bgm.volume; }
+    public float SfxVolume { get => sfx.volume; }
+    private void Start()
+    {
+        if (bgmInstance != null)
+        {
+            Destroy(this.bgm.gameObject);
+            bgm = bgmInstance;
+        }
+        else
+        {
+            bgmInstance = bgm;
+            bgm.transform.SetParent(null);
+            DontDestroyOnLoad(bgm.gameObject);
+        }
+        if (sfxInstance != null)
+        {
+            Destroy(this.sfx.gameObject);
+            sfx = sfxInstance;
+        }
+        else
+        {
+            sfxInstance = sfx;
+            sfx.transform.SetParent(null);
+            DontDestroyOnLoad(sfx.gameObject);
+        }
+        if (IsMuted())
+        {
+            IsMute = true;
+        }
+        SetMute(IsMuted());
+        if (PlayerPrefs.HasKey("BGMVolume") && PlayerPrefs.HasKey("SFXVolume"))
+        {
+            LoadBGM();
+            LoadSFX();
+        }
+        Debug.Log(IsMuted());
+    }
+
 	
 	public void PlaySFX(AudioClip clip)
 	{
@@ -45,6 +61,34 @@ public class AudioManager : MonoBehaviour
 			sfx.Stop();
 		sfx.clip = clip;
 		sfx.Play();
+	}
+	
+	public void ToggleMute()
+	{
+		if (IsMuted())
+		{
+			PlayerPrefs.SetInt("IsMuted", 1);
+			bgm.volume = 1;
+			sfx.volume = 1;
+			bgm.mute = false;
+			sfx.mute = false;
+			PlayerPrefs.SetFloat("BGMVolume", 1);
+			PlayerPrefs.SetFloat("SFXVolume", 1);
+			if (IsMute)
+			{ 
+				bgm.Play();
+				sfx.Play();
+			}
+		}
+		else
+		{
+			PlayerPrefs.SetInt("IsMuted", 0);
+			bgm.volume = 0;
+			sfx.volume = 0;
+			PlayerPrefs.SetFloat("BGMVolume", 0);
+			PlayerPrefs.SetFloat("SFXVolume", 0);
+		}
+		Debug.Log(PlayerPrefs.GetInt("IsMute"));
 	}
 	
 	public void SetMute(bool value)
@@ -56,10 +100,27 @@ public class AudioManager : MonoBehaviour
 	public void SetBgmVolume(float value)
 	{
 		bgm.volume = value;
+		PlayerPrefs.SetFloat("BGMVolume", value);
 	}
 	
 	public void SetSfxVolume(float value)
 	{
 		sfx.volume = value;
+		PlayerPrefs.SetFloat("SFXVolume", value);
+	}
+	
+	public void LoadBGM()
+	{
+		bgm.volume = PlayerPrefs.GetFloat("BGMVolume");
+	}
+	public void LoadSFX()
+	{
+		sfx.volume = PlayerPrefs.GetFloat("SFXVolume");
+	}
+
+	public bool IsMuted()
+	{
+		bool i = (PlayerPrefs.GetInt("IsMuted", 1) == 0);
+		return i;
 	}
 }

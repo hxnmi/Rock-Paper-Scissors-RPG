@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 				{
 					lotteryList.Add(character);
 				}
+				character.Button.interactable = value;
 			}
 			int index = Random.Range(0,characterList.Count);
 			selectedCharacter = CharacterList[index];
