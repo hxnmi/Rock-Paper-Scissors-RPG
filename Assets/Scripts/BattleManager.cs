@@ -4,73 +4,145 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField] State state;
-    [SerializeField] bool isPlayer1DoneSelecting;
-    [SerializeField] bool isPlayer2DoneSelecting;
-    [SerializeField] bool isAttackDone;
-    [SerializeField] bool isDamagingDone;
-    [SerializeField] bool isReturningDone;
-    [SerializeField] bool isPlayerEliminated;
+	[SerializeField]
+	State state;
 
-    enum State
-    {
-        Preparation,
-        Player1Select,
-        Player2Select,
-        Attacking,
-        Damaging,
-        Returning,
-        BattleOver
-    }
+	[SerializeField]
+	Player player1;
 
-    void Update()
-    {
-        switch (state)
-        {
-            case State.Preparation:
-                state = State.Player1Select;
-                break;
+	[SerializeField]
+	Player player2;
 
-            case State.Player1Select:
-                if (isPlayer1DoneSelecting)
-                {
-                    state = State.Player2Select;
-                }
-                break;
+	[SerializeField]
+	bool isPlayer1DoneSelecting;
 
-            case State.Player2Select:
-                if (isPlayer2DoneSelecting)
-                {
-                    state = State.Attacking;
-                }
-                break;
+	[SerializeField]
+	bool isPlayer2DoneSelecting;
 
-            case State.Attacking:
-                if (isAttackDone)
-                {
-                    state = State.Damaging;
-                }
-                break;
+	[SerializeField]
+	bool isAttackDone;
 
-            case State.Damaging:
-                if(isDamagingDone)
-                {
-                    state = State.Returning;
-                }
-                break;
+	[SerializeField]
+	bool isDamagingDone;
 
-            case State.Returning:
-                if(isReturningDone)
-                {
-                    if (isPlayerEliminated)
-                        state = State.BattleOver;
-                    else
-                        state = State.Preparation;
-                }
-                break;
+	[SerializeField]
+	bool isReturningDone;
 
-            case State.BattleOver: 
-                break;
-        }
-    }
+	[SerializeField]
+	bool isPlayerEliminated;
+
+	enum State
+	{
+		Preparation,
+		Player1Select,
+		Player2Select,
+		Attacking,
+		Damaging,
+		Returning,
+		BattleOver
+	}
+
+	void Update()
+	{
+		switch (state)
+		{
+			case State.Preparation:
+				player1.Prepare();
+				player2.Prepare();
+
+				player1.SetPlay(true);
+				player2.SetPlay(false);
+				state = State.Player1Select;
+				break;
+
+			case State.Player1Select:
+				if (player1.SelectedCharacter != null)
+				{
+					player1.SetPlay(false);
+					player2.SetPlay(true);
+					state = State.Player2Select;
+				}
+				break;
+
+			case State.Player2Select:
+				if (player2.SelectedCharacter != null)
+				{
+					player1.Attack();
+					player2.Attack();
+					state = State.Attacking;
+				}
+				break;
+
+			case State.Attacking:
+				if (player1.IsAttacking() == false && player2.IsAttacking() == false)
+				{
+					CalculateBattle(player1, player2, out Player winner, out Player loser);
+
+					state = State.Damaging;
+				}
+				break;
+
+			case State.Damaging:
+				if (isDamagingDone)
+				{
+					state = State.Returning;
+				}
+				break;
+
+			case State.Returning:
+				if (isReturningDone)
+				{
+					if (isPlayerEliminated)
+						state = State.BattleOver;
+					else
+						state = State.Preparation;
+				}
+				break;
+
+			case State.BattleOver:
+				break;
+		}
+	}
+	
+	private void CalculateBattle(Player player1, Player player2,out Player winner, out Player loser)
+	{
+		var type1 = player1.SelectedCharacter.Type;
+		var type2 = player2.SelectedCharacter.Type;
+		
+		if(type1 == CharacterType.Paper && type2 == CharacterType.Rock)
+		{
+			winner = player1;
+			loser = player2;
+		}
+		else if(type1 == CharacterType.Rock && type2 == CharacterType.Paper)
+		{
+			winner = player2;
+			loser = player1;
+		}
+		else if(type1 == CharacterType.Rock && type2 == CharacterType.Scissors)
+		{
+			winner = player1;
+			loser = player2;
+		}
+		else if(type1 == CharacterType.Scissors && type2 == CharacterType.Rock)
+		{
+			winner = player2;
+			loser = player1;
+		}
+		else if(type1 == CharacterType.Scissors && type2 == CharacterType.Paper)
+		{
+			winner = player1;
+			loser = player2;
+		}
+		else if(type1 == CharacterType.Paper && type2 == CharacterType.Scissors)
+		{
+			winner = player2;
+			loser = player1;
+		}
+		else
+		{
+			winner = null;
+			loser = null;
+		}
+	}
 }
