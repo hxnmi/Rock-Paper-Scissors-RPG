@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
 	
 	public void Attack()
 	{
-		// SelectedCharacter.Anim.SetTrigger("Attack");
 		onCountdownStart.Invoke();
 		selectedCharacter.transform.DOMove(atkRef.position, 6f);
 	}
@@ -91,6 +90,7 @@ public class Player : MonoBehaviour
 	
 	public bool IsDamaging()
 	{
+		selectedCharacter.Anim.SetTrigger("Attack");
 		if(selectedCharacter == null)
 			return false;
 		var spriteRend = selectedCharacter.GetComponent<SpriteRenderer>();

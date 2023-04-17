@@ -34,7 +34,7 @@ public class Character : MonoBehaviour
 	
 	public int MaxHP {get => maxHP; }
 	
-	// public Animator Anim { get => anim;}
+	public Animator Anim { get => anim;}
 
 	private void Start()
 	{

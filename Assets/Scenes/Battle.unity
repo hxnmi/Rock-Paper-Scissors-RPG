@@ -2399,6 +2399,8 @@ GameObject:
   - component: {fileID: 351121621}
   - component: {fileID: 351121622}
   - component: {fileID: 351121623}
+  - component: {fileID: 351121625}
+  - component: {fileID: 351121624}
   m_Layer: 0
   m_Name: Enemy Paper
   m_TagString: Untagged
@@ -2498,6 +2500,43 @@ MonoBehaviour:
   healthBar: {fileID: 827480991}
   hpText: {fileID: 1019271156}
   button: {fileID: 25773726}
+  anim: {fileID: 351121624}
+--- !u!95 &351121624
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351121620}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4afd35ca203551428ea5117ae7a7e6a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &351121625
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351121620}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5ddf5d2068f4d33429489628ec2fce24, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 5ddf5d2068f4d33429489628ec2fce24, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &400040228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,7 +3843,6 @@ MonoBehaviour:
   onCountdownStart:
     m_PersistentCalls:
       m_Calls: []
-  anim: {fileID: 0}
 --- !u!1 &648651354
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,6 +5676,8 @@ GameObject:
   - component: {fileID: 980998730}
   - component: {fileID: 980998729}
   - component: {fileID: 980998731}
+  - component: {fileID: 980998733}
+  - component: {fileID: 980998732}
   m_Layer: 0
   m_Name: Player Scissors
   m_TagString: Untagged
@@ -5737,6 +5777,43 @@ MonoBehaviour:
   healthBar: {fileID: 527170007}
   hpText: {fileID: 1887715545}
   button: {fileID: 1086409960}
+  anim: {fileID: 980998732}
+--- !u!95 &980998732
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980998728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc080d144f3965342ac6e243d2d2cbdb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &980998733
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980998728}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 64271640d4d0b4242b18617d3fca7801, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 64271640d4d0b4242b18617d3fca7801, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1019271154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7977,6 +8054,7 @@ MonoBehaviour:
   healthBar: {fileID: 965812177}
   hpText: {fileID: 596218476}
   button: {fileID: 214358702}
+  anim: {fileID: 1399549586}
 --- !u!95 &1399549586
 Animator:
   serializedVersion: 4
@@ -8242,7 +8320,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  anim: {fileID: 0}
 --- !u!1 &1507983023
 GameObject:
   m_ObjectHideFlags: 0
@@ -8254,6 +8331,8 @@ GameObject:
   - component: {fileID: 1507983024}
   - component: {fileID: 1507983025}
   - component: {fileID: 1507983026}
+  - component: {fileID: 1507983028}
+  - component: {fileID: 1507983027}
   m_Layer: 0
   m_Name: Enemy Scissors
   m_TagString: Untagged
@@ -8353,6 +8432,43 @@ MonoBehaviour:
   healthBar: {fileID: 1099854310}
   hpText: {fileID: 2047421275}
   button: {fileID: 1171531378}
+  anim: {fileID: 1507983027}
+--- !u!95 &1507983027
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507983023}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea96ea555f0c75c43acffde1080fbb1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &1507983028
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507983023}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c1e1e20d05ebe3e45b3f9e9b07a18b71, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c1e1e20d05ebe3e45b3f9e9b07a18b71, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1608662981
 GameObject:
   m_ObjectHideFlags: 0
@@ -8499,6 +8615,8 @@ GameObject:
   - component: {fileID: 1612202151}
   - component: {fileID: 1612202150}
   - component: {fileID: 1612202152}
+  - component: {fileID: 1612202154}
+  - component: {fileID: 1612202153}
   m_Layer: 0
   m_Name: Player Paper
   m_TagString: Untagged
@@ -8598,6 +8716,43 @@ MonoBehaviour:
   healthBar: {fileID: 400040230}
   hpText: {fileID: 1954981513}
   button: {fileID: 1297396845}
+  anim: {fileID: 1612202153}
+--- !u!95 &1612202153
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612202149}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f55b923bbbbcd82428a3f1e7fdb8bd0d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &1612202154
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612202149}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 88d330cbf9b1a474393c8e66d2bc5606, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 88d330cbf9b1a474393c8e66d2bc5606, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1658971456
 GameObject:
   m_ObjectHideFlags: 0
@@ -9451,6 +9606,8 @@ GameObject:
   - component: {fileID: 1909225401}
   - component: {fileID: 1909225402}
   - component: {fileID: 1909225403}
+  - component: {fileID: 1909225405}
+  - component: {fileID: 1909225404}
   m_Layer: 0
   m_Name: Enemy Rock
   m_TagString: Untagged
@@ -9550,6 +9707,43 @@ MonoBehaviour:
   healthBar: {fileID: 1168759029}
   hpText: {fileID: 1049230697}
   button: {fileID: 1100206906}
+  anim: {fileID: 1909225404}
+--- !u!95 &1909225404
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909225400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de9a3912761d71f4d9d112590dab300a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &1909225405
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909225400}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ebd20e9c8a44c6f4fb410425ac40cdbf, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ebd20e9c8a44c6f4fb410425ac40cdbf, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1954981511
 GameObject:
   m_ObjectHideFlags: 0
